@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+use strict;
+use Text::Amuse;
+use File::Temp qw /tempfile/;
+
+my $input = do { local $/; <> };
+my ($tmp, $filename) = tempfile(UNLINK => 1);
+print $tmp $input;
+flush $tmp;
+
+my $doc = Text::Amuse->new(file => $filename);
+print "<h1>" . $doc->header_as_html->{"title"} . "</h1>\n\n";
+print $doc->as_html;

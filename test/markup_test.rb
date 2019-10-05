@@ -91,6 +91,7 @@ message
     assert_equal "restructuredtext", GitHub::Markup.renderer('README.rst', 'Title').name
     assert_equal "pod", GitHub::Markup.renderer('README.pod', '=head1').name
     assert_equal "pod6", GitHub::Markup.renderer('README.pod6', '=begin pod').name
+    assert_equal "muse", GitHub::Markup.renderer('README.muse', '#title Title').name
   end
 
   def test_rendering_by_symbol
