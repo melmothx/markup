@@ -1,14 +1,16 @@
 #!/usr/bin/env perl
 
+use utf8;
 use strict;
-use Text::Amuse;
-use File::Temp qw /tempfile/;
+use warnings;
+use Text::Amuse::Functions qw/muse_to_object/;
+
+binmode STDIN, ":encoding(UTF-8)";
+binmode STDERR, ":encoding(UTF-8)";
+binmode STDOUT, ":encoding(UTF-8)";
 
 my $input = do { local $/; <> };
-my ($tmp, $filename) = tempfile(UNLINK => 1);
-print $tmp $input;
-flush $tmp;
 
-my $doc = Text::Amuse->new(file => $filename);
+my $doc = muse_to_object($input);
 print "<h1>" . $doc->header_as_html->{"title"} . "</h1>\n\n";
 print $doc->as_html;
