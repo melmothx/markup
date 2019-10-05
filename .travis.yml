@@ -18,6 +18,7 @@ before_install:
   - export PATH=$PATH:/.perl6/bin:/opt/rakudo-pkg/bin
   - curl -L http://cpanmin.us | perl - --sudo App::cpanminus
   - sudo cpanm --installdeps --notest Pod::Simple
+  - sudo cpanm --installdeps --notest Text::Amuse
   - sudo pip install docutils
 cache:
   - bundler
